@@ -10,6 +10,7 @@ class OptionInline(TabularInline):
     model = Option
 
 class OptionGroupAdmin(ModelAdmin):
+    list_display = ('name', 'description')
     inlines = [OptionInline,]
     prepopulated_fields = {"slug": ("name",)}
     formfield_overrides = {
@@ -22,6 +23,7 @@ class OptionGroupAdmin(ModelAdmin):
 admin.site.register(OptionGroup, OptionGroupAdmin)
 
 class TextOptionAdmin(ModelAdmin):
+    list_display = ('name', 'description')
     formfield_overrides = {
         models.ManyToManyField: {'widget': FilteredSelectMultiple(
             verbose_name=_('products'),
